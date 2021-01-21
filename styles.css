@@ -1,0 +1,26 @@
+.screenContainer{
+    height: 10vw;
+    width: 25vw;
+    border: thick solid black;
+}
+/* make text align right and maybe center*/
+.history{
+    height: 20%;
+}
+
+.result{
+    height: auto;
+}
+
+.btnGridContainer{
+    display:grid;
+    height: 25vw;
+    width: 25vw;
+    border: thick solid black;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+}
+
+.btn{
+    border: thin solid gray;
+}

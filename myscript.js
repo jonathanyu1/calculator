@@ -1,6 +1,6 @@
 let result = 0;
 
-// basic operations - add, subtract, multiply, divide
+// basic operations - add, subtract, multiply, divide, mod
 
 function addNum(num1, num2){
     return num1+num2;
@@ -18,6 +18,9 @@ function divideNum(num1,num2){
     return num1/num2;
 }
 
+function modNum(num1,num2){
+    return num1%num2;
+}
 // takes operator and 2 numbers, calls corresponding function with 2 numbers
 
 function operate(num1,num2,operator){
@@ -36,6 +39,10 @@ function operate(num1,num2,operator){
             break;
         case 'divide':
             result = divideNum(num1,num2);
+            console.log(result);
+            break;
+        case 'modulo':
+            result = modNum(num1,num2);
             console.log(result);
             break;
     }

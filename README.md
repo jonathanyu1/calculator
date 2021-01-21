@@ -1,0 +1,1 @@
+This project aims to build a functional simple calculator using knowledge gained from the previous 'etch-a-sketch' project and subsequent learning on fundamentals of javscript arrays and objects.
