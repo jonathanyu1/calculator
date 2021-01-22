@@ -1,6 +1,8 @@
 let result = 0;
 let history = '';
-let currentOperator;
+let currentOperator = '';
+let numOperators=0;
+let clearResultDisplay = 0;
 const operatorArray = ['+','-','*','÷','%']
 const displayHistory=document.getElementById('history');
 const displayResult=document.getElementById('result');
@@ -30,23 +32,23 @@ function modNum(num1,num2){
 
 function operate(num1,num2,operator){
     switch (operator){
-        case 'add':
+        case '+':
             result = addNum(num1,num2);
             console.log(result);
             break;
-        case 'subtract':
+        case '-':
             result = subtractNum(num1,num2);
             console.log(result);
             break;
-        case 'multiply':
+        case '*':
             result = multiplyNum(num1,num2);
             console.log(result);
             break;
-        case 'divide':
+        case '÷':
             result = divideNum(num1,num2);
             console.log(result);
             break;
-        case 'modulo':
+        case '%':
             result = modNum(num1,num2);
             console.log(result);
             break;
@@ -58,65 +60,36 @@ function operate(num1,num2,operator){
 const operators = document.querySelectorAll('.operator');
 operators.forEach((op)=>{
     op.addEventListener('click', function(e){
-        // push current displayResult to historyResult
-        // if displayHistory contains an operator and is not the last index
-        // if it contains an operator and is last index, replace 
         displayHistory.textContent += displayResult.textContent;
-        operatorArray.some(optr =>{
-         if (operatorArray.some(optr=> displayHistory.textContent.includes(optr))){
-             console.log('has op');
-             console.log(optr);
-             console.log(displayHistory.textContent);
-             let operatorIndex=displayHistory.textContent.indexOf(optr);
-             console.log(operatorIndex);
-             // replace previous operator with current clicked
-             if (operatorIndex=displayHistory.textContent.length-1){
-                 displayHistory.textContent = displayHistory.textContent.slice(0,-1)+e.srcElement.innerText;
-                 console.log(displayHistory.textContent);
-             } else {
-                 let num2 = Number(displayHistory.textContent.slice(operatorIndex+1,-1));
-                 console.log(num2+'num2');
-                 switch (optr){
-                    case '+':
-                        operate(result,num2,'add');
-                        break;
-                    case '-':
-                        operate(result,num2,'subtract');
-                        break;
-                    case '*':
-                        operate(result,num2,'multiply');
-                        break;
-                    case '÷':
-                        operate(result,num2,'divide');
-                        break;
-                    case '%':
-                        operate(result,num2,'modulo');
-                        break;
-                }
-            }
-         } else {
+        numOperators += 1;
+        // need to add case for equals 
+        // need to add functionality for clear all, delete
+        if (numOperators==1){
+            result = Number(displayResult.textContent);
             displayHistory.textContent += e.srcElement.innerText;
-         }
-        });
-
-        // store operator in temp variable operator
-        currentOperator = e.srcElement.innerText;
-        console.log(currentOperator+'curr');
-        // convert displayResult into number, store in result
-        result = Number(displayResult.textContent);
-        displayResult.textContent='';
-        // search historyResult if there is an operator
-        // if so evaluate, and store in displayResult and result
-        // clear historyResult when evaluate
+            displayResult.textContent = '';
+        } else if (numOperators==2){
+            num2 = Number(displayResult.textContent);
+            operate(result,num2,currentOperator);
+            displayResult.textContent = result;
+            currentOperator = e.srcElement.innerText;
+            displayHistory.textContent = result + currentOperator;
+            numOperators=1;
+            clearResultDisplay += 1;
+        }
+        currentOperator = e.srcElement.innerText
     });
-    });
+});
 
 const btns = document.querySelectorAll('.btn');
 btns.forEach((btn)=>{
     btn.addEventListener('click', function(e){
-        // add if statement where it clears current display result if button clicked after operator, otherwise append
         // check if current input has a decimal, if yes then prevent . from being pressed
         // if +/- pressed, add or remove - in front of input
+        if (clearResultDisplay){
+            displayResult.textContent = '';
+            clearResultDisplay=0;
+        }
         displayResult.textContent += (e.srcElement.innerText);
     });
 });
