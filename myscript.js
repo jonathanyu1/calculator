@@ -55,7 +55,44 @@ function operate(num1,num2,operator){
     }
 }
 
+// set all globals back to original value, clear screen
+function clearAll(){
+    result = 0;
+    history = '';
+    currentOperator = '';
+    numOperators=0;
+    clearResultDisplay = 0;
+    displayResult.textContent = '';
+    displayHistory.textContent = '';
+}
+
+function negate(){
+    if (displayResult.textContent.charAt(0) == '-'){
+        displayResult.textContent = displayResult.textContent.slice(1);
+    } else {
+        displayResult.textContent = '-'+ displayResult.textContent;
+    }
+}
+
 // event listener
+const specialOperators = document.querySelectorAll('.specialOperator');
+specialOperators.forEach((spOp)=>{
+    spOp.addEventListener('click', function(e){
+        switch (e.target.id){
+            case 'clear':
+                clearAll();
+                break;
+            case 'delete':
+                // removes last char from string displayResult
+                displayResult.textContent = displayResult.textContent.slice(0,-1);
+                break;
+            case 'equals':
+                console.log(e.target.id);
+                break;
+        }
+
+    });
+});
 
 const operators = document.querySelectorAll('.operator');
 operators.forEach((op)=>{
@@ -84,12 +121,18 @@ operators.forEach((op)=>{
 const btns = document.querySelectorAll('.btn');
 btns.forEach((btn)=>{
     btn.addEventListener('click', function(e){
-        // check if current input has a decimal, if yes then prevent . from being pressed
-        // if +/- pressed, add or remove - in front of input
+        // resets displayResult if a result is displayed, and a user inputs a number
         if (clearResultDisplay){
             displayResult.textContent = '';
             clearResultDisplay=0;
         }
-        displayResult.textContent += (e.srcElement.innerText);
+        console.log(e.target.id);
+        if (e.target.id == 'decimal' && displayResult.textContent.includes('.')){
+            return;
+        } else if (e.target.id == 'negate'){
+            negate();
+        } else {
+            displayResult.textContent += (e.srcElement.innerText);
+        }
     });
 });
