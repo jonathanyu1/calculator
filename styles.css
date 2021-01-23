@@ -1,30 +1,81 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bodyContainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    /* align-items: center; */
+    background-color:#404040;
+}
+
+.calculatorContainer{
+    
+}
+
 .screenContainer{
     height: 10vw;
     width: 25vw;
-    border: thick solid black;
-}
-/* make text align right and maybe center*/
-.history{
-    height: 20%;
+    text-align: right;
+    background-color:#404040;
+    color: white;
+    border: 30px solid #101010;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
-.result{
-    height: auto;
+/* make text align right and maybe center*/
+#history{
+    padding-top: 10px;
+    font-size: 30px;
+    color: 	#A9A9A9;
+}
+
+#result{
+    padding-top: 15px;
+    font-size: 75px;
 }
 
 .btnGridContainer{
     display:grid;
     height: 25vw;
     width: 25vw;
-    border: thick solid black;
+    border: 30px solid #101010;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(5,1fr);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .btn{
-    border: thin solid gray;
+    border: thin solid #404040;
+    color: white;
+    background-color: black;
+    font-size: 30px;
 }
 
 .operator{
-    border: thin solid gray;
+    border: thin solid #404040;
+    color: white;
+    background-color: #202020;
+    font-size: 30px;
 }
+
+.specialOperator{
+    border: thin solid #404040;
+    color: white;
+    background-color: #0000CC;
+    font-size: 30px;
+}
+/*
+#negate{
+    border-bottom-left-radius: 5px;
+}
+
+#modulo{
+    border-bottom-right-radius: 5px;
+}
+*/

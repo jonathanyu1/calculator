@@ -3,7 +3,6 @@ let history = '';
 let currentOperator = '';
 let numOperators=0;
 let clearDisplayResult = 0;
-const operatorArray = ['+','-','*','÷','%']
 const displayHistory=document.getElementById('history');
 const displayResult=document.getElementById('result');
 
@@ -34,25 +33,30 @@ function operate(num1,num2,operator){
     switch (operator){
         case '+':
             result = addNum(num1,num2);
-            console.log(result);
             break;
         case '-':
             result = subtractNum(num1,num2);
-            console.log(result);
             break;
         case '*':
             result = multiplyNum(num1,num2);
-            console.log(result);
             break;
-        case '÷':
+        case '÷': 
+            if (num2==0){
+                alert('You cannot divide by 0!');
+                clearAll();
+                break;
+            }
             result = divideNum(num1,num2);
-            console.log(result);
             break;
         case '%':
             result = modNum(num1,num2);
-            console.log(result);
             break;
     }
+    result = roundToTen(result);
+}
+
+function roundToTen(num){
+    return +(Math.round(num + "e+10")  + "e-10");
 }
 
 // set all globals back to original value, clear screen
@@ -142,7 +146,6 @@ btns.forEach((btn)=>{
             displayResult.textContent = '';
             clearDisplayResult=0;
         }
-        console.log(e.target.id);
         if (e.target.id == 'decimal' && displayResult.textContent.includes('.')){
             return;
         } else if (e.target.id == 'negate'){
