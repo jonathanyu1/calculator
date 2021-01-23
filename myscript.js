@@ -2,7 +2,7 @@ let result = 0;
 let history = '';
 let currentOperator = '';
 let numOperators=0;
-let clearResultDisplay = 0;
+let clearDisplayResult = 0;
 const operatorArray = ['+','-','*','÷','%']
 const displayHistory=document.getElementById('history');
 const displayResult=document.getElementById('result');
@@ -61,7 +61,7 @@ function clearAll(){
     history = '';
     currentOperator = '';
     numOperators=0;
-    clearResultDisplay = 0;
+    clearDisplayResult = 0;
     displayResult.textContent = '';
     displayHistory.textContent = '';
 }
@@ -73,6 +73,24 @@ function negate(){
         displayResult.textContent = '-'+ displayResult.textContent;
     }
 }
+
+function evaluate(){
+    num2=Number(displayResult.textContent);
+    operate(result,num2,currentOperator);
+    displayResult.textContent = result;
+    clearDisplayResult += 1;
+}
+
+function equals(){
+    if (numOperators == 1){
+        if (displayResult.textContent !== ''){
+            evaluate();
+            displayHistory.textContent += num2 + '=';
+            numOperators = 0;
+        }
+    }
+}
+
 
 // event listener
 const specialOperators = document.querySelectorAll('.specialOperator');
@@ -87,7 +105,7 @@ specialOperators.forEach((spOp)=>{
                 displayResult.textContent = displayResult.textContent.slice(0,-1);
                 break;
             case 'equals':
-                console.log(e.target.id);
+                equals();
                 break;
         }
 
@@ -97,22 +115,20 @@ specialOperators.forEach((spOp)=>{
 const operators = document.querySelectorAll('.operator');
 operators.forEach((op)=>{
     op.addEventListener('click', function(e){
+        if (displayHistory.textContent.includes('=')){
+            displayHistory.textContent = '';
+        }
         displayHistory.textContent += displayResult.textContent;
         numOperators += 1;
-        // need to add case for equals 
-        // need to add functionality for clear all, delete
         if (numOperators==1){
             result = Number(displayResult.textContent);
             displayHistory.textContent += e.srcElement.innerText;
             displayResult.textContent = '';
         } else if (numOperators==2){
-            num2 = Number(displayResult.textContent);
-            operate(result,num2,currentOperator);
-            displayResult.textContent = result;
+            evaluate();
             currentOperator = e.srcElement.innerText;
             displayHistory.textContent = result + currentOperator;
             numOperators=1;
-            clearResultDisplay += 1;
         }
         currentOperator = e.srcElement.innerText
     });
@@ -122,9 +138,9 @@ const btns = document.querySelectorAll('.btn');
 btns.forEach((btn)=>{
     btn.addEventListener('click', function(e){
         // resets displayResult if a result is displayed, and a user inputs a number
-        if (clearResultDisplay){
+        if (clearDisplayResult){
             displayResult.textContent = '';
-            clearResultDisplay=0;
+            clearDisplayResult=0;
         }
         console.log(e.target.id);
         if (e.target.id == 'decimal' && displayResult.textContent.includes('.')){
