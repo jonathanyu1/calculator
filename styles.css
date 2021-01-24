@@ -33,7 +33,6 @@ html, body{
 #result{
     display: grid;
     font-size: 60px;
-    word-break: break-word;
 }
 
 .btnGridContainer{

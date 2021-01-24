@@ -53,6 +53,11 @@ function operate(num1,num2,operator){
             break;
     }
     result = roundToTen(result);
+    result = trimLength(result);
+}
+
+function trimLength(num){
+    return Number(num.toString().slice(0,12));
 }
 
 function roundToTen(num){
