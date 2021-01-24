@@ -1,6 +1,6 @@
 This project aims to build a functional simple calculator using knowledge gained from the previous 'etch-a-sketch' project and subsequent learning on fundamentals of javscript arrays and objects.
 
-Live Preview of the project: 
+Live Preview of the project: https://jonathanyu1.github.io/calculator
 
 What I learned:
 

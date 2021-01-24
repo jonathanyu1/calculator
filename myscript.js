@@ -95,7 +95,6 @@ function equals(){
     }
 }
 
-
 // event listener
 const specialOperators = document.querySelectorAll('.specialOperator');
 specialOperators.forEach((spOp)=>{

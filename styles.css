@@ -12,22 +12,18 @@ html, body{
     background-color:#404040;
 }
 
-.calculatorContainer{
-    
-}
-
 .screenContainer{
     height: 10vw;
     width: 25vw;
     text-align: right;
     background-color:#404040;
     color: white;
-    border: 30px solid #101010;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border: 40px solid #101010;
+    border-bottom: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
-/* make text align right and maybe center*/
 #history{
     padding-top: 10px;
     font-size: 30px;
@@ -43,11 +39,11 @@ html, body{
     display:grid;
     height: 25vw;
     width: 25vw;
-    border: 30px solid #101010;
+    border: 40px solid #101010;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(5,1fr);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .btn{
@@ -70,12 +66,3 @@ html, body{
     background-color: #0000CC;
     font-size: 30px;
 }
-/*
-#negate{
-    border-bottom-left-radius: 5px;
-}
-
-#modulo{
-    border-bottom-right-radius: 5px;
-}
-*/
