@@ -149,6 +149,8 @@ btns.forEach((btn)=>{
             return;
         } else if (e.target.id == 'negate'){
             negate();
+        } else if (displayResult.textContent.length>=10){
+            return;
         } else {
             displayResult.textContent += (e.srcElement.innerText);
         }
