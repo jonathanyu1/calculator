@@ -31,8 +31,9 @@ html, body{
 }
 
 #result{
-    padding-top: 15px;
-    font-size: 75px;
+    display: grid;
+    font-size: 60px;
+    word-break: break-word;
 }
 
 .btnGridContainer{
