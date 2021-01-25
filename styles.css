@@ -8,7 +8,6 @@ html, body{
     display: flex;
     justify-content: center;
     padding-top: 50px;
-    /* align-items: center; */
     background-color:#404040;
 }
 

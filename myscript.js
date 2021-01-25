@@ -27,8 +27,8 @@ function divideNum(num1,num2){
 function modNum(num1,num2){
     return num1%num2;
 }
-// takes operator and 2 numbers, calls corresponding function with 2 numbers
 
+// takes operator and 2 numbers, calls corresponding function with 2 numbers
 function operate(num1,num2,operator){
     switch (operator){
         case '+':
@@ -145,7 +145,7 @@ operators.forEach((op)=>{
 const btns = document.querySelectorAll('.btn');
 btns.forEach((btn)=>{
     btn.addEventListener('click', function(e){
-        // resets displayResult if a result is displayed, and a user inputs a number
+        // resets displayResult if a result is displayed, and a user inputs a number immediately after
         if (clearDisplayResult){
             displayResult.textContent = '';
             clearDisplayResult=0;
